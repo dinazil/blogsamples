@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22129.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "unit_tests", "unit_tests\unit_tests.vcxproj", "{705DBCA9-4257-445B-963E-CDF515E6C63C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "simple_console", "simple_console\simple_console.vcxproj", "{28433A70-290B-4918-B72B-B70F0DFC9845}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{705DBCA9-4257-445B-963E-CDF515E6C63C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{705DBCA9-4257-445B-963E-CDF515E6C63C}.Debug|Win32.Build.0 = Debug|Win32
+		{705DBCA9-4257-445B-963E-CDF515E6C63C}.Release|Win32.ActiveCfg = Release|Win32
+		{705DBCA9-4257-445B-963E-CDF515E6C63C}.Release|Win32.Build.0 = Release|Win32
+		{28433A70-290B-4918-B72B-B70F0DFC9845}.Debug|Win32.ActiveCfg = Debug|Win32
+		{28433A70-290B-4918-B72B-B70F0DFC9845}.Debug|Win32.Build.0 = Debug|Win32
+		{28433A70-290B-4918-B72B-B70F0DFC9845}.Release|Win32.ActiveCfg = Release|Win32
+		{28433A70-290B-4918-B72B-B70F0DFC9845}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
