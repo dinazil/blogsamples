@@ -27,6 +27,11 @@
 *.out
 *.app
 
+# VS stuff
+*.sln.ide
+*.suo
+*.sdf
+
 # Folders
 bin/
 obj/
