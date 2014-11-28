@@ -14,6 +14,7 @@ namespace DbGenerator
 
             using (var ctx = new SampleDbContext())
             {
+                Console.WriteLine("Your connection string is: {0}", ctx.Database.Connection.ConnectionString);
                 Console.WriteLine("Total number of rows in data model: {0}", ctx.Data.Count());
             }
         }
