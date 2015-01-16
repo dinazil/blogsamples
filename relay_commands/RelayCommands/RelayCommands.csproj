@@ -70,10 +70,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\UserData.cs" />
+    <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\IUserMessageService.cs" />
+    <Compile Include="Services\UserChangedEventArgs.cs" />
     <Compile Include="Services\UserMessageService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\UserDataControl.xaml.cs">
+      <DependentUpon>UserDataControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,6 +92,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\UserDataControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
