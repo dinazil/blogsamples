@@ -9,19 +9,24 @@ namespace RelayCommands.Models
 {
     class UserData : ObservableObject
     {
-        private string _name;
-        private Uri _avatar;
+        private string _userName;
+        private string _email;
 
-        public string Name
+        public UserData(string name, string email)
         {
-            get { return _name; }
-            set { Set(() => Name, ref _name, value); }
+            UserName = name;
+            Email = email;
+        }
+        public string UserName
+        {
+            get { return _userName; }
+            set { Set(() => UserName, ref _userName, value); }
         }
 
-        public Uri Avatar
+        public string Email
         {
-            get { return _avatar; }
-            set { Set(() => Avatar, ref _avatar, value); }
+            get { return _email; }
+            set { Set(() => Email, ref _email, value); }
         }
     }
 }

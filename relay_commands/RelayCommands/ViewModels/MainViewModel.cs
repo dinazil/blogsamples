@@ -17,11 +17,7 @@ namespace RelayCommands.ViewModels
             _userMessageService = userMessageService;
 
             Title = "Relay Commands Demo";
-            CurrentUser = new UserData
-            {
-                Name = "Cute Kitten",
-                Avatar = new Uri("http://res.freestockphotos.biz/pictures/9/9343-a-cute-orange-kitten-isolated-on-a-white-background-pv.jpg")
-            };
+            CurrentUser = new UserData("Dina", "email");
         }
 
         private string _title;

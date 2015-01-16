@@ -8,7 +8,7 @@
              d:DataContext="{d:DesignInstance Type={x:Type models:UserData}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Horizontal">
-        <Image Source="{Binding Avatar}" Width="50" Height="50"></Image>
-        <TextBlock Text="{Binding Name}" FontSize="24" VerticalAlignment="Center" Margin="10"></TextBlock>
+        <TextBlock Text="{Binding UserName}" FontSize="24" VerticalAlignment="Bottom"></TextBlock>
+        <TextBlock Text="{Binding Email, StringFormat=({0})}" VerticalAlignment="Bottom" Margin="10,0,0,0"></TextBlock>
     </StackPanel>
 </UserControl>
