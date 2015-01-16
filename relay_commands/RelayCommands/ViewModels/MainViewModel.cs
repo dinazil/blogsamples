@@ -12,12 +12,17 @@ namespace RelayCommands.ViewModels
     class MainViewModel : ViewModelBase
     {
         private readonly IUserMessageService _userMessageService;
-        public MainViewModel(IUserMessageService userMessageService)
+        public MainViewModel(IUserService userService,
+            IUserMessageService userMessageService)
         {
             _userMessageService = userMessageService;
 
             Title = "Relay Commands Demo";
-            CurrentUser = new UserData("Dina", "email");
+
+            userService.UserChanged += (s, e) =>
+                {
+                    CurrentUser = e.NewUser;
+                };
         }
 
         private string _title;

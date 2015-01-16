@@ -6,6 +6,11 @@
         Title="MainWindow" Height="350" Width="525">
     <DockPanel>
         <TextBlock DockPanel.Dock="Top" Text="{Binding Title}" FontSize="32" FontWeight="Bold"></TextBlock>
-        <views:UserDataControl DockPanel.Dock="Top" DataContext="{Binding CurrentUser}"></views:UserDataControl>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Label>Current User: </Label>
+            <views:UserDataControl DataContext="{Binding CurrentUser}"></views:UserDataControl>
+        </StackPanel>
+        <views:LoginControl DockPanel.Dock="Top"></views:LoginControl>
+        <views:FriendsControl></views:FriendsControl>
     </DockPanel>
 </Window>

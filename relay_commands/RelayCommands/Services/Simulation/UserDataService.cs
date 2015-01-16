@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RelayCommands.Services.Simulation
 {
-    class UserDataServie : IUserDataService
+    class UserDataService : IUserDataService
     {
         private static Dictionary<string, UserData> users = new Dictionary<string, UserData>
         {

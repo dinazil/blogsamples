@@ -22,6 +22,11 @@ namespace RelayCommands.ViewModels
             _userService = userService;
             _userDataService = userDataService;
             _userMessageService = userMessageService;
+
+            LogoutCommand = new RelayCommand(() =>
+            {
+                userService.SetUser(null);
+            });
         }
 
         private ICommand _loginCommand;
@@ -42,6 +47,12 @@ namespace RelayCommands.ViewModels
                         }
                     }));
             }
+        }
+
+        public ICommand LogoutCommand
+        {
+            get;
+            private set;
         }
     }
 }

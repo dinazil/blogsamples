@@ -74,12 +74,20 @@
     <Compile Include="Services\IUserDataService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\IUserMessageService.cs" />
-    <Compile Include="Services\Simulation\UserDataServie.cs" />
+    <Compile Include="Services\Simulation\UserDataService.cs" />
     <Compile Include="Services\UserChangedEventArgs.cs" />
     <Compile Include="Services\UserMessageService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="ViewModels\FriendsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\FriendsControl.xaml.cs">
+      <DependentUpon>FriendsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginControl.xaml.cs">
+      <DependentUpon>LoginControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserDataControl.xaml.cs">
       <DependentUpon>UserDataControl.xaml</DependentUpon>
     </Compile>
@@ -95,6 +103,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\FriendsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserDataControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
