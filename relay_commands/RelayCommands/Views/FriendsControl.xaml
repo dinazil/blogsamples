@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:views="clr-namespace:RelayCommands.Views"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=FriendsViewModel}">
@@ -20,7 +21,7 @@
                     <ContextMenu.ItemContainerStyle>
                         <Style TargetType="MenuItem">
                             <Setter Property="Header" Value="{Binding Header}"></Setter>
-                            <Setter Property="Command" Value="{Binding Command}"></Setter>
+                            <Setter Property="Command" Value="{Binding Command, diag:PresentationTraceSources.TraceLevel=High}"></Setter>
                             <Setter Property="CommandParameter" 
                                     Value="{Binding Source={StaticResource ViewModelLocator}, Path=FriendsViewModel.CurrentFriend}">
                             </Setter>
