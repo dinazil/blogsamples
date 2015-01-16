@@ -72,6 +72,8 @@
     </ApplicationDefinition>
     <Compile Include="Services\IUserMessageService.cs" />
     <Compile Include="Services\UserMessageService.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

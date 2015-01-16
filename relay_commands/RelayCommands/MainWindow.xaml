@@ -1,8 +1,9 @@
 ﻿<Window x:Class="RelayCommands.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MainViewModel}"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <TextBlock Text="{Binding Title}" FontSize="32" FontWeight="Bold"></TextBlock>
+    </DockPanel>
 </Window>
