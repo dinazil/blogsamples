@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using RelayCommands.Models;
 using RelayCommands.Services;
 using System;
@@ -24,13 +25,37 @@ namespace RelayCommands.ViewModels
                             Friends.Add(f);
                         }
                     }
+
                 };
+
+            Commands.Add(new FriendCommand
+                {
+                    Header = "Remove",
+                    Command = new RelayCommand<UserData>(user =>
+                    {
+                        // userDataService.remove(currentUser, user);
+                        Friends.Remove(user);
+                    })
+                });
+        }
+
+        private UserData _currentFriend;
+        public UserData CurrentFriend
+        {
+            get { return _currentFriend; }
+            set { Set(() => CurrentFriend, ref _currentFriend, value); }
         }
 
         private ObservableCollection<UserData> _friends = new ObservableCollection<UserData>();
         public ObservableCollection<UserData> Friends
         {
             get { return _friends; }
+        }
+
+        private ObservableCollection<FriendCommand> _commands = new ObservableCollection<FriendCommand>();
+        public ObservableCollection<FriendCommand> Commands
+        {
+            get { return _commands; }
         }
     }
 }

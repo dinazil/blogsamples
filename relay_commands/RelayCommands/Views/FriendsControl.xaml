@@ -9,12 +9,25 @@
              DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=FriendsViewModel}">
     <StackPanel>
         <TextBlock>Friends:</TextBlock>
-        <ListBox ItemsSource="{Binding Friends}">
+        <ListBox ItemsSource="{Binding Friends}" SelectionMode="Single" SelectedItem="{Binding CurrentFriend}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <views:UserDataControl></views:UserDataControl>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.ContextMenu>
+                <ContextMenu ItemsSource="{Binding Source={StaticResource ViewModelLocator},Path=FriendsViewModel.Commands}">
+                    <ContextMenu.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Header" Value="{Binding Header}"></Setter>
+                            <Setter Property="Command" Value="{Binding Command}"></Setter>
+                            <Setter Property="CommandParameter" 
+                                    Value="{Binding Source={StaticResource ViewModelLocator}, Path=FriendsViewModel.CurrentFriend}">
+                            </Setter>
+                         </Style>
+                    </ContextMenu.ItemContainerStyle>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
     </StackPanel>
 </UserControl>

@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\FriendCommand.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Services\IUserDataService.cs" />
     <Compile Include="Services\IUserService.cs" />
