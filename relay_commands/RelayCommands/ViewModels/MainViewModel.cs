@@ -13,18 +13,25 @@ namespace RelayCommands.ViewModels
 {
     class MainViewModel : ViewModelBase
     {
-        private readonly IUserMessageService _userMessageService;
         public MainViewModel(IUserService userService,
-            IUserMessageService userMessageService)
+            IUserMessageService userMessageService,
+            FriendsViewModel friendsViewModel)
         {
-            _userMessageService = userMessageService;
-
             Title = "Relay Commands Demo";
 
             userService.UserChanged += (s, e) =>
                 {
                     CurrentUser = e.NewUser;
                 };
+
+            friendsViewModel.Commands.Add(new FriendCommand
+                {
+                    Header = "Login with this user",
+                    Command = new RelayCommand<UserData>(user=>
+                    {
+                        userService.SetUser(user);
+                    })
+                });
 
             GCCommand = new RelayCommand(() =>
             {
