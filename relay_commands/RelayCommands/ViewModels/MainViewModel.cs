@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using RelayCommands.Models;
 using RelayCommands.Services;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RelayCommands.ViewModels
 {
@@ -23,6 +25,12 @@ namespace RelayCommands.ViewModels
                 {
                     CurrentUser = e.NewUser;
                 };
+
+            GCCommand = new RelayCommand(() =>
+            {
+                GC.Collect();
+                userMessageService.DisplayMessage("Operation Complete", "Ran GC successfully");
+            });
         }
 
         private string _title;
@@ -38,6 +46,12 @@ namespace RelayCommands.ViewModels
         {
             get { return _currentUser; }
             set { Set(() => CurrentUser, ref _currentUser, value); }
+        }
+
+        public ICommand GCCommand
+        {
+            get;
+            private set;
         }
     }
 }

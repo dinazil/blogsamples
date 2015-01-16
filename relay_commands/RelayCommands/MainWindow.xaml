@@ -11,6 +11,7 @@
             <views:UserDataControl DataContext="{Binding CurrentUser}"></views:UserDataControl>
         </StackPanel>
         <views:LoginControl DockPanel.Dock="Top"></views:LoginControl>
+        <Button DockPanel.Dock="Bottom" Command="{Binding GCCommand}">Clean Memory!</Button>
         <views:FriendsControl></views:FriendsControl>
     </DockPanel>
 </Window>
