@@ -71,10 +71,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\UserData.cs" />
+    <Compile Include="Services\IUserDataService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\IUserMessageService.cs" />
+    <Compile Include="Services\Simulation\UserDataServie.cs" />
     <Compile Include="Services\UserChangedEventArgs.cs" />
     <Compile Include="Services\UserMessageService.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\UserDataControl.xaml.cs">
