@@ -78,6 +78,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BindableColumns\ColumnHeader.cs" />
+    <Compile Include="BindableColumns\CustomBoundColumn.cs" />
+    <Compile Include="BindableColumns\DataGridDynamicColumns.cs" />
+    <Compile Include="BindableColumns\DynamicRow.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
