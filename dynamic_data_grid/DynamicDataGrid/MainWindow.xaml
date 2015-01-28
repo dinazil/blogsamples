@@ -2,13 +2,17 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:bc="clr-namespace:DynamicDataGrid.BindableColumns"
-        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        xmlns:tk="http://schemas.xceed.com/wpf/xaml/toolkit"
         DataContext="{StaticResource MainViewModel}"
         Title="MainWindow" Height="350" Width="525">
     <DockPanel>
         <StackPanel DockPanel.Dock="Right">
-            <Button>Add Row</Button>
-            <Button>Add Column</Button>
+            <UniformGrid Rows="1">
+                <Label>Column</Label>
+                <Button Command="{Binding AddColumnCommand}" CommandParameter="{Binding CurrentColumn}">Add</Button>
+                <tk:IntegerUpDown Value="{Binding CurrentColumn}" Minimum="0" Maximum="{Binding Columns.Count}"></tk:IntegerUpDown>
+                <Button>Remove</Button>
+            </UniformGrid>
             <Button Command="{Binding ResetDataCommand}">Reset Data</Button>
         </StackPanel>
         <DataGrid ItemsSource="{Binding Rows}"

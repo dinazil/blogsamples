@@ -35,8 +35,16 @@ namespace DynamicDataGrid
             }
         }
 
+        private int _currentColumn;
+        public int CurrentColumn
+        {
+            get { return _currentColumn; }
+            set { Set(() => CurrentColumn, ref _currentColumn, value); }
+        }
+
         private int _rowCounter = 0;
         private int _dataCounter = 0;
+        private int _columnCounter = 0;
 
         private const int InitialColumnsNumber = 3;
         private const int InitialRowsNumber = 10;
@@ -45,7 +53,7 @@ namespace DynamicDataGrid
         {
            for (int i = 0; i < InitialColumnsNumber; ++i)
            {
-               Columns.Add(new ColumnHeader { Header = i });
+               Columns.Add(new ColumnHeader { Header = _columnCounter++ });
            }
 
            for (int j = 0; j < InitialRowsNumber; ++j)
@@ -78,6 +86,26 @@ namespace DynamicDataGrid
             get
             {
                 return _resetDataCommand ?? (_resetDataCommand = new RelayCommand(ResetData));
+            }
+        }
+
+        private void AddColumn(int index)
+        {
+            Columns.Insert(index, new ColumnHeader { Header = _columnCounter++ });
+            foreach (var r in Rows)
+            {
+                r.Insert(index, new PropertyData { Data = _dataCounter++ });
+            }
+            ++CurrentColumn;
+        }
+
+        private ICommand _addColumnCommand;
+
+        public ICommand AddColumnCommand
+        {
+            get
+            {
+                return _addColumnCommand ?? (_addColumnCommand = new RelayCommand<int>(AddColumn));
             }
         }
     }
