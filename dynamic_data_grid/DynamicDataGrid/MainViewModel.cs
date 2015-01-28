@@ -1,11 +1,13 @@
 ﻿using DynamicDataGrid.BindableColumns;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace DynamicDataGrid
 {
@@ -14,8 +16,8 @@ namespace DynamicDataGrid
         private readonly ObservableCollection<ColumnHeader> _columns = 
             new ObservableCollection<ColumnHeader>();
 
-        private readonly ObservableCollection<DynamicRow<int, int>> _rows =
-            new ObservableCollection<DynamicRow<int, int>>();
+        private readonly ObservableCollection<DynamicRow<int, PropertyData>> _rows =
+            new ObservableCollection<DynamicRow<int, PropertyData>>();
 
         public ObservableCollection<ColumnHeader> Columns
         {
@@ -25,7 +27,7 @@ namespace DynamicDataGrid
             }
         }
 
-        public ObservableCollection<DynamicRow<int, int>> Rows
+        public ObservableCollection<DynamicRow<int, PropertyData>> Rows
         {
             get
             {
@@ -48,13 +50,35 @@ namespace DynamicDataGrid
 
            for (int j = 0; j < InitialRowsNumber; ++j)
            {
-               var row = new DynamicRow<int, int>{ Title = _rowCounter++ };
+               var row = new DynamicRow<int, PropertyData> { Title = _rowCounter++ };
                for (int i = 0; i < InitialColumnsNumber; ++i)
                {
-                   row.Add(_dataCounter++);
+                   row.Add(new PropertyData { Data = _dataCounter++ });
                }
                Rows.Add(row);
            }
+        }
+
+        private void ResetData()
+        {
+            //_dataCounter = 0;
+            foreach (var r in Rows)
+            {
+                foreach (var p in r)
+                {
+                    p.Data = _dataCounter++;
+                }
+            }
+        }
+
+        private ICommand _resetDataCommand;
+
+        public ICommand ResetDataCommand
+        {
+            get
+            {
+                return _resetDataCommand ?? (_resetDataCommand = new RelayCommand(ResetData));
+            }
         }
     }
 }

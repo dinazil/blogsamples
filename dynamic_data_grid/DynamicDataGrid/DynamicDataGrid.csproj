@@ -82,6 +82,7 @@
     <Compile Include="BindableColumns\CustomBoundColumn.cs" />
     <Compile Include="BindableColumns\DataGridDynamicColumns.cs" />
     <Compile Include="BindableColumns\DynamicRow.cs" />
+    <Compile Include="PropertyData.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
