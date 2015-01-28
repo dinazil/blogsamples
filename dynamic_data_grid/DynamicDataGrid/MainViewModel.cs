@@ -46,6 +46,17 @@ namespace DynamicDataGrid
             }
         }
 
+        private int _currentRow;
+        public int CurrentRow
+        {
+            get { return _currentRow; }
+            set 
+            {
+                Set(() => CurrentRow, ref _currentRow, value);
+                RemoveRowCommand.RaiseCanExecuteChanged();
+            }
+        }
+
         private int _rowCounter = 0;
         private int _dataCounter = 0;
         private int _columnCounter = 0;
@@ -135,6 +146,47 @@ namespace DynamicDataGrid
             get
             {
                 return _removeColumnCommand ?? (_removeColumnCommand = new RelayCommand<int>(RemoveColumn, CanRemoveColumn));
+            }
+        }
+
+        private void AddRow(int index)
+        {
+            Rows.Insert(index, new DynamicRow<int, PropertyData> { Title = _rowCounter++ });
+            for (int i = 0; i < Columns.Count; ++i)
+            {
+                Rows[index].Add(new PropertyData { Data = _dataCounter++ });
+            }
+            ++CurrentRow;
+        }
+
+        private ICommand _addRowCommand;
+
+        public ICommand AddRowCommand
+        {
+            get
+            {
+                return _addRowCommand ?? (_addRowCommand = new RelayCommand<int>(AddRow));
+            }
+        }
+
+        private void RemoveRow(int index)
+        {
+            Rows.RemoveAt(index);
+            CurrentRow = Math.Max(0, CurrentRow - 1);
+        }
+
+        private bool CanRemoveRow(int index)
+        {
+            return Rows.Any() && index < Rows.Count;
+        }
+
+        private RelayCommand<int> _removeRowCommand;
+
+        public RelayCommand<int> RemoveRowCommand
+        {
+            get
+            {
+                return _removeRowCommand ?? (_removeRowCommand = new RelayCommand<int>(RemoveRow, CanRemoveRow));
             }
         }
     }

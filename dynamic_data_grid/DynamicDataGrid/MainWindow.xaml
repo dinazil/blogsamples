@@ -13,6 +13,12 @@
                 <tk:IntegerUpDown Value="{Binding CurrentColumn}" Minimum="0" Maximum="{Binding Columns.Count}"></tk:IntegerUpDown>
                 <Button Command="{Binding RemoveColumnCommand}" CommandParameter="{Binding CurrentColumn}">Remove</Button>
             </UniformGrid>
+            <UniformGrid Rows="1">
+                <Label>Row</Label>
+                <Button Command="{Binding AddRowCommand}" CommandParameter="{Binding CurrentRow}">Add</Button>
+                <tk:IntegerUpDown Value="{Binding CurrentRow}" Minimum="0" Maximum="{Binding Rows.Count}"></tk:IntegerUpDown>
+                <Button Command="{Binding RemoveRowCommand}" CommandParameter="{Binding CurrentRow}">Remove</Button>
+            </UniformGrid>
             <Button Command="{Binding ResetDataCommand}">Reset Data</Button>
         </StackPanel>
         <DataGrid ItemsSource="{Binding Rows}"
