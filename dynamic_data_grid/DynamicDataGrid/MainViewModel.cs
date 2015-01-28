@@ -39,7 +39,11 @@ namespace DynamicDataGrid
         public int CurrentColumn
         {
             get { return _currentColumn; }
-            set { Set(() => CurrentColumn, ref _currentColumn, value); }
+            set 
+            { 
+                Set(() => CurrentColumn, ref _currentColumn, value);
+                RemoveColumnCommand.RaiseCanExecuteChanged();
+            }
         }
 
         private int _rowCounter = 0;
@@ -106,6 +110,31 @@ namespace DynamicDataGrid
             get
             {
                 return _addColumnCommand ?? (_addColumnCommand = new RelayCommand<int>(AddColumn));
+            }
+        }
+
+        private void RemoveColumn(int index)
+        {
+            Columns.RemoveAt(index);
+            foreach (var r in Rows)
+            {
+                r.RemoveAt(index);
+            }
+            CurrentColumn = Math.Max(0, CurrentColumn-1);
+        }
+
+        private bool CanRemoveColumn(int index)
+        {
+            return Columns.Any() && Columns.Count > index;
+        }
+
+        private RelayCommand<int> _removeColumnCommand;
+
+        public RelayCommand<int> RemoveColumnCommand
+        {
+            get
+            {
+                return _removeColumnCommand ?? (_removeColumnCommand = new RelayCommand<int>(RemoveColumn, CanRemoveColumn));
             }
         }
     }

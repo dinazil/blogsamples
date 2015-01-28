@@ -11,7 +11,7 @@
                 <Label>Column</Label>
                 <Button Command="{Binding AddColumnCommand}" CommandParameter="{Binding CurrentColumn}">Add</Button>
                 <tk:IntegerUpDown Value="{Binding CurrentColumn}" Minimum="0" Maximum="{Binding Columns.Count}"></tk:IntegerUpDown>
-                <Button>Remove</Button>
+                <Button Command="{Binding RemoveColumnCommand}" CommandParameter="{Binding CurrentColumn}">Remove</Button>
             </UniformGrid>
             <Button Command="{Binding ResetDataCommand}">Reset Data</Button>
         </StackPanel>
