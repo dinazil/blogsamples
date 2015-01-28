@@ -73,7 +73,7 @@ namespace DynamicDataGrid
 
         private void ResetData()
         {
-            //_dataCounter = 0;
+            _dataCounter = 0;
             foreach (var r in Rows)
             {
                 foreach (var p in r)
