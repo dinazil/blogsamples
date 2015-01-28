@@ -22,7 +22,9 @@ namespace DynamicDataGrid.BindableColumns
         /// <returns>A new read-only element that is bound to the value of the column.</returns>
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
         {
-            var binding = new Binding(((Binding)Binding).Path.Path);
+            var binding = new Binding(((Binding)Binding).Path.Path)
+            // comment this out to fix the bug
+            { Source = dataItem };
 
             var content = new ContentPresenter {ContentTemplate = CellTemplate};
             content.SetBinding(ContentControl.ContentProperty, binding);
