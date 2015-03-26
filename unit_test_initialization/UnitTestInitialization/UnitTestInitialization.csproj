@@ -57,6 +57,9 @@
     <Compile Include="NUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="xUnitTest.cs" />
+    <Compile Include="xUnitUtils\PrioritizedFixtureAttribute.cs" />
+    <Compile Include="xUnitUtils\PrioritizedFixtureClassCommand.cs" />
+    <Compile Include="xUnitUtils\TestPriorityAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
