@@ -11,11 +11,13 @@ namespace UnitTestInitialization
     class NUnitTest
     {
         private int _instanceCounter = 0;
+        private static int _classCounter = 0;
         
         [SetUp]
         public void Setup()
         {
             ++_instanceCounter;
+            ++_classCounter;
         }
 
         [Test]
@@ -34,6 +36,24 @@ namespace UnitTestInitialization
         public void Test3()
         {
             Assert.AreEqual(3, _instanceCounter);
+        }
+
+        [Test]
+        public void TestStatic4()
+        {
+            Assert.AreEqual(4, _classCounter);
+        }
+
+        [Test]
+        public void TestStatic5()
+        {
+            Assert.AreEqual(5, _classCounter);
+        }
+
+        [Test]
+        public void TestStatic6()
+        {
+            Assert.AreEqual(6, _classCounter);
         }
     }
 }
