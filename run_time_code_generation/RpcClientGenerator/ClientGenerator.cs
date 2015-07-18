@@ -8,17 +8,26 @@ namespace RpcClientGenerator
 	{
 		public static T GenerateRpcClient<T> (TimeSpan timeout) where T : class
 		{
+			string code = GenerateInterfaceWrapperCode<T> ();
 			throw new NotImplementedException ();
 		}
 
 		private static string GenerateMethodCode(MethodInfo method)
 		{
-			throw new NotImplementedException ();
+			string returnType = method.ReturnType.Name;
+			string name = method.Name;
+			string parameterType = method.GetParameters ().Single ().ParameterType.Name;
+			return @"
+					${returnType} ${name}(${parameterType} parameter)
+					{
+						return _client.ExecuteMethod(${name}, parameter, Timeout);
+					}
+			";
 		}
 
 		private static string GeneratePropertiesCode()
 		{
-			return @"public TimeSpan Timeout { get; set; }";
+			return @"public TimeSpan Timeout { get; set; } = TimeSpan.FromMinutes(4)";
 		}
 
 		private static string GeneratePrefixCode<T>()
@@ -27,6 +36,7 @@ namespace RpcClientGenerator
 			return @"
 					public class Client : ${interfaceName}
 					{
+						private readonly RpcClientGenerator.MockClient _client { Timeout = Timeout };
 					";
 		}
 
