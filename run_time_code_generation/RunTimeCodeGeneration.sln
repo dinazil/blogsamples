@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcClientGenerator", "RpcClientGenerator\RpcClientGenerator.csproj", "{B9330B6B-1D65-4872-A05D-21110F7F2F33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9330B6B-1D65-4872-A05D-21110F7F2F33}.Debug|x86.ActiveCfg = Debug|x86
+		{B9330B6B-1D65-4872-A05D-21110F7F2F33}.Debug|x86.Build.0 = Debug|x86
+		{B9330B6B-1D65-4872-A05D-21110F7F2F33}.Release|x86.ActiveCfg = Release|x86
+		{B9330B6B-1D65-4872-A05D-21110F7F2F33}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal
