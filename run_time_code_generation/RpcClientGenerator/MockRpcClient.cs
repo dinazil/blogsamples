@@ -11,7 +11,9 @@ namespace RpcClientGenerator
 			Console.WriteLine ("Creating client to {0}:{1}", server, port);
 		}
 
-		public object ExecuteMethod(string methodName, object parameters, TimeSpan timeout)
+		public TimeSpan Timeout { get; set; }
+
+		public object ExecuteMethod(string methodName, object parameters)
 		{
 			Console.WriteLine("Executing {0}({1})", methodName, parameters);
 			int choice = random.Next (100);
