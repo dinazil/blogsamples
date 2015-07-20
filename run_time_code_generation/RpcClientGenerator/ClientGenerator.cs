@@ -9,7 +9,7 @@ namespace RpcClientGenerator
 {
 	public static class ClientGenerator
 	{
-		public static T GenerateRpcClient<T> (TimeSpan timeout) where T : class
+		public static T GenerateRpcClient<T> (IRpcClient client) where T : class
 		{
 			string code = GenerateInterfaceWrapperCode<T> (); 
 			var provider = CodeDomProvider.CreateProvider("CSharp");
@@ -26,7 +26,8 @@ namespace RpcClientGenerator
 				}
 			}
 
-			throw new NotImplementedException ();
+			var smartClientType = result.CompiledAssembly.GetType ("SmartClient");
+			return (T)Activator.CreateInstance (smartClientType, new object[] { client }, null);
 		}
 
 		private static string GeneratePrefixCode<T>()

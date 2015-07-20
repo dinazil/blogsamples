@@ -1,7 +1,7 @@
 using System;
 using RpcClientGenerator;
 
-public class SmartClient : {interfaceName}
+public class SmartClient : {interfaceName}, IRpcClient
 {
 	private IRpcClient _client;
 
@@ -17,4 +17,9 @@ public class SmartClient : {interfaceName}
 		{
 			_client.Timeout = value;
 		}
+	}
+
+	public object ExecuteMethod(string methodName, object parameters)
+	{
+		return _client.ExecuteMethod(methodName, parameters);
 	}
