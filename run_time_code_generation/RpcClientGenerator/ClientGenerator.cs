@@ -1,6 +1,8 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Linq;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace RpcClientGenerator
 {
@@ -8,33 +10,44 @@ namespace RpcClientGenerator
 	{
 		public static T GenerateRpcClient<T> (TimeSpan timeout) where T : class
 		{
-			string code = GenerateInterfaceWrapperCode<T> ();
-			Console.WriteLine (code);
-
-
-
+			string code = GenerateInterfaceWrapperCode<T> (); 
+			var provider = CodeDomProvider.CreateProvider("CSharp");
+			var parameters = new CompilerParameters ();
+			parameters.ReferencedAssemblies.Add (typeof(T).Assembly.Location);
+			var result = provider.CompileAssemblyFromSource (parameters, code);
+			if (result.Errors.HasErrors) 
+			{
+				Console.WriteLine (code);
+				Console.WriteLine ("Errors:");
+				foreach (var error in result.Errors) 
+				{
+					Console.WriteLine (error);
+				}
+			}
 
 			throw new NotImplementedException ();
 		}
 
 		private static string GenerateMethodCode(MethodInfo method)
 		{
-			string returnType = method.ReturnType.Name;
+			string returnType = method.ReturnType.FullName;
 			string name = method.Name;
-			string parameterType = method.GetParameters ().Single ().ParameterType.Name;
-			return $"\t{returnType} {name}({parameterType} parameter){Environment.NewLine}\t{{{Environment.NewLine}\t\treturn _client.ExecuteMethod(\"{name}\", parameter, Timeout);{Environment.NewLine}\t}}{Environment.NewLine}";
+
+			string parameterType = method.GetParameters ().Single ().ParameterType.FullName;
+			return $"\tpublic {returnType} {name}({parameterType} parameter){Environment.NewLine}\t{{{Environment.NewLine}\t\treturn ({returnType})_client.ExecuteMethod(\"{name}\", parameter);{Environment.NewLine}\t}}{Environment.NewLine}";
 		}
 
 		private static string GeneratePropertiesCode()
 		{
-			return $"\tpublic TimeSpan Timeout {{ get; set; }} = TimeSpan.FromMinutes(4){Environment.NewLine}";
+			return $"\tpublic TimeSpan Timeout {{ get; set; }} = TimeSpan.FromMinutes(4);{Environment.NewLine}";
 		}
 
 
 		private static string GeneratePrefixCode<T>()
 		{
-			string interfaceName = typeof(T).Name;
-			return $"public class Client : {interfaceName}{Environment.NewLine}{{{Environment.NewLine}\tprivate readonly RpcClientGenerator.MockClient _client {{ Timeout = Timeout }};{Environment.NewLine}";
+		
+			string interfaceName = typeof(T).FullName;
+			return $"using System;{Environment.NewLine}public class Client : {interfaceName}{Environment.NewLine}{{{Environment.NewLine}\tprivate readonly RpcClientGenerator.MockRpcClient _client = new RpcClientGenerator.MockRpcClient {{ Timeout = Timeout }};{Environment.NewLine}";
 		}
 
 		private static string GenerateSuffixCode()
