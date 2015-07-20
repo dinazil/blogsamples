@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom.Compiler;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Diagnostics;
@@ -28,43 +29,55 @@ namespace RpcClientGenerator
 			throw new NotImplementedException ();
 		}
 
+		private static string GeneratePrefixCode<T>()
+		{
+			string interfaceName = typeof(T).FullName;
+
+			var code = GetFormattingString("prefix");
+			return code.Replace ("{interfaceName}", interfaceName);
+		}
+
 		private static string GenerateMethodCode(MethodInfo method)
 		{
 			string returnType = method.ReturnType.FullName;
-			string name = method.Name;
-
+			string methodNname = method.Name;
 			string parameterType = method.GetParameters ().Single ().ParameterType.FullName;
-			return $"\tpublic {returnType} {name}({parameterType} parameter){Environment.NewLine}\t{{{Environment.NewLine}\t\treturn ({returnType})_client.ExecuteMethod(\"{name}\", parameter);{Environment.NewLine}\t}}{Environment.NewLine}";
-		}
 
-		private static string GeneratePropertiesCode()
-		{
-			return $"\tpublic TimeSpan Timeout {{ get; set; }} = TimeSpan.FromMinutes(4);{Environment.NewLine}";
-		}
-
-
-		private static string GeneratePrefixCode<T>()
-		{
-		
-			string interfaceName = typeof(T).FullName;
-			return $"using System;{Environment.NewLine}public class Client : {interfaceName}{Environment.NewLine}{{{Environment.NewLine}\tprivate readonly RpcClientGenerator.MockRpcClient _client = new RpcClientGenerator.MockRpcClient {{ Timeout = Timeout }};{Environment.NewLine}";
+			var code = GetFormattingString("method");
+			code = code.Replace ("{returnType}", returnType);
+			code = code.Replace ("{methodName}", methodNname);
+			return code.Replace ("{parameterType}", parameterType);
 		}
 
 		private static string GenerateSuffixCode()
 		{
-			return "}\n";
+			return GetFormattingString("suffix");
 		}
 
 		private static string GenerateInterfaceWrapperCode<T>()
 		{
 			string start = GeneratePrefixCode<T> ();
-			string properties = GeneratePropertiesCode ();
+
 			string end = GenerateSuffixCode ();
 
 			var methodInfos = typeof(T).GetMethods (BindingFlags.Public | BindingFlags.Instance);
 			string methods = string.Join(Environment.NewLine, methodInfos.Select(GenerateMethodCode));
 
-			return $"{start}{Environment.NewLine}{properties}{Environment.NewLine}{methods}{Environment.NewLine}{end}";
+			return $"{start}{Environment.NewLine}{methods}{Environment.NewLine}{end}";
+		}
+
+		private static string GetFormattingString(string resource)
+		{
+			var assembly = Assembly.GetExecutingAssembly();
+			var resourceName = "RpcClientGenerator.Resources." + resource + ".txt";
+
+			using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+			{
+				using (StreamReader reader = new StreamReader(stream))
+				{
+					return reader.ReadToEnd();
+				}
+			}
 		}
 	}
 }

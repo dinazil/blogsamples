@@ -1,0 +1,20 @@
+using System;
+using RpcClientGenerator;
+
+public class SmartClient : {interfaceName}
+{
+	private IRpcClient _client;
+
+	public SmartClient(IRpcClient client)
+	{
+		_client = client;
+	}
+
+	public TimeSpan Timeout
+	{
+		get { return _client.Timeout; }
+		set 
+		{
+			_client.Timeout = value;
+		}
+	}

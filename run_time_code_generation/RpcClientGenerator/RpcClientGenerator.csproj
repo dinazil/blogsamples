@@ -44,4 +44,12 @@
     <Compile Include="ManualRemoteMathOperations.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\method.txt" />
+    <EmbeddedResource Include="Resources\prefix.txt" />
+    <EmbeddedResource Include="Resources\suffix.txt" />
+  </ItemGroup>
 </Project>
