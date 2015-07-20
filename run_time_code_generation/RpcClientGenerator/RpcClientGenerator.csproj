@@ -41,6 +41,7 @@
     <Compile Include="ClientGenerator.cs" />
     <Compile Include="IRpcClient.cs" />
     <Compile Include="MockMathOperationsClient.cs" />
+    <Compile Include="ManualRemoteMathOperations.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
