@@ -12,6 +12,7 @@ namespace RpcClientGenerator
 			Console.WriteLine (smartClient.Decrement (1));
 			Console.WriteLine (smartClient.Increment (0));
 			Console.WriteLine (smartClient.SquareRoot (4));
+			Console.WriteLine (smartClient.increment (2));
 		}
 	}
 }
