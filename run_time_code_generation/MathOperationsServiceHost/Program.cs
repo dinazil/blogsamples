@@ -7,7 +7,7 @@ namespace MathOperationsServiceHost
 {
 	public class Program
 	{
-		public static int Main(string[] args)
+		public static void Main(string[] args)
 		{
 			Uri baseAddress = new Uri ("http://localhost:12345/MathOperations");
 			using (ServiceHost host = new ServiceHost(typeof(MathOperationsService), baseAddress))
@@ -17,7 +17,6 @@ namespace MathOperationsServiceHost
 				if (smb == null)
 					smb = new ServiceMetadataBehavior();
 				smb.HttpGetEnabled = true;
-				//smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
 				host.Description.Behaviors.Add(smb);
 
 				host.AddServiceEndpoint(
@@ -41,8 +40,6 @@ namespace MathOperationsServiceHost
 
 				host.Close();
 			}
-
-			return 0;
 		}
 	}
 }
