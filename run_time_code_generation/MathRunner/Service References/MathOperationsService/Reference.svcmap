@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3f37c0ff-6509-4119-87cf-9aad55a7ed42" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>false</GenerateTaskBasedAsynchronousMethod>
+    <GenerateEventBasedAsynchronousMethods>false</GenerateEventBasedAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Array" Category="List" />
+      <CollectionMapping TypeName="System.Collections.Generic.Dictionary`2" Category="Dictionary" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:12345/MathOperations" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MathOperations.wsdl" MetadataType="Wsdl" ID="f32833aa-7855-4f7a-8fed-9c10ac866fed" SourceId="1" SourceUrl="http://localhost:12345/MathOperations?wsdl" />
+    <MetadataFile FileName="MathOperations.xsd" MetadataType="Schema" ID="34b9ddca-f000-4932-9733-b03c6db3b6bc" SourceId="1" SourceUrl="http://localhost:12345/MathOperations?xsd=xsd1" />
+    <MetadataFile FileName="MathOperations1.xsd" MetadataType="Schema" ID="444ce875-cfe8-4066-b98b-545947646463" SourceId="1" SourceUrl="http://localhost:12345/MathOperations?xsd=xsd0" />
+  </Metadata>
+</ReferenceGroup>

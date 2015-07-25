@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s0="http://tempuri.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="service" targetNamespace="http://tempuri.org/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns:tns="http://tempuri.org/Imports" targetNamespace="http://tempuri.org/Imports" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import schemaLocation="http://localhost:12345/MathOperations?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:import schemaLocation="http://localhost:12345/MathOperations?xsd=xsd1" namespace="http://tempuri.org/" />
+    </xs:schema>
+  </types>
+  <message name="IMathOperationsService_Increment_InputMessage">
+    <part name="parameters" element="tns:Increment" />
+  </message>
+  <message name="IMathOperationsService_Increment_OutputMessage">
+    <part name="parameters" element="tns:IncrementResponse" />
+  </message>
+  <message name="IMathOperationsService_Decrement_InputMessage">
+    <part name="parameters" element="tns:Decrement" />
+  </message>
+  <message name="IMathOperationsService_Decrement_OutputMessage">
+    <part name="parameters" element="tns:DecrementResponse" />
+  </message>
+  <message name="IMathOperationsService_SquareRoot_InputMessage">
+    <part name="parameters" element="tns:SquareRoot" />
+  </message>
+  <message name="IMathOperationsService_SquareRoot_OutputMessage">
+    <part name="parameters" element="tns:SquareRootResponse" />
+  </message>
+  <message name="IMathOperationsService_Timeout_InputMessage">
+    <part name="parameters" element="tns:Timeout" />
+  </message>
+  <message name="IMathOperationsService_Timeout_OutputMessage">
+    <part name="parameters" element="tns:TimeoutResponse" />
+  </message>
+  <portType name="IMathOperationsService">
+    <operation name="Increment">
+      <input wsaw:Action="http://tempuri.org/IMathOperationsService/Increment" message="tns:IMathOperationsService_Increment_InputMessage" />
+      <output wsaw:Action="http://tempuri.org/IMathOperationsService/IncrementResponse" message="tns:IMathOperationsService_Increment_OutputMessage" />
+    </operation>
+    <operation name="Decrement">
+      <input wsaw:Action="http://tempuri.org/IMathOperationsService/Decrement" message="tns:IMathOperationsService_Decrement_InputMessage" />
+      <output wsaw:Action="http://tempuri.org/IMathOperationsService/DecrementResponse" message="tns:IMathOperationsService_Decrement_OutputMessage" />
+    </operation>
+    <operation name="SquareRoot">
+      <input wsaw:Action="http://tempuri.org/IMathOperationsService/SquareRoot" message="tns:IMathOperationsService_SquareRoot_InputMessage" />
+      <output wsaw:Action="http://tempuri.org/IMathOperationsService/SquareRootResponse" message="tns:IMathOperationsService_SquareRoot_OutputMessage" />
+    </operation>
+    <operation name="Timeout">
+      <input wsaw:Action="http://tempuri.org/IMathOperationsService/Timeout" message="tns:IMathOperationsService_Timeout_InputMessage" />
+      <output wsaw:Action="http://tempuri.org/IMathOperationsService/TimeoutResponse" message="tns:IMathOperationsService_Timeout_OutputMessage" />
+    </operation>
+  </portType>
+  <binding name="BasicHttpBinding_IMathOperationsService" type="tns:IMathOperationsService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="Increment">
+      <soap:operation soapAction="http://tempuri.org/IMathOperationsService/Increment" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Decrement">
+      <soap:operation soapAction="http://tempuri.org/IMathOperationsService/Decrement" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SquareRoot">
+      <soap:operation soapAction="http://tempuri.org/IMathOperationsService/SquareRoot" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Timeout">
+      <soap:operation soapAction="http://tempuri.org/IMathOperationsService/Timeout" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="service">
+    <port name="BasicHttpBinding_IMathOperationsService" binding="tns:BasicHttpBinding_IMathOperationsService">
+      <soap:address location="http://localhost:12345/MathOperations" />
+    </port>
+  </service>
+</definitions>
