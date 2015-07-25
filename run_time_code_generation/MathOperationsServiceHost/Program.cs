@@ -12,15 +12,22 @@ namespace MathOperationsServiceHost
 			Uri baseAddress = new Uri ("http://localhost:12345/MathOperations");
 			using (ServiceHost host = new ServiceHost(typeof(MathOperationsService), baseAddress))
 			{
+				ServiceMetadataBehavior smb = host.Description.Behaviors.Find<ServiceMetadataBehavior>();
+				// If not, add one
+				if (smb == null)
+					smb = new ServiceMetadataBehavior();
+				smb.HttpGetEnabled = true;
+				//smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
+				host.Description.Behaviors.Add(smb);
+
 				host.AddServiceEndpoint(
 					typeof(IMetadataExchange),
 					MetadataExchangeBindings.CreateMexHttpBinding(),
-					baseAddress + "/mex"
+					"mex"
 				);
 
 				host.AddServiceEndpoint (typeof(IMathOperationsService),
-					new BasicHttpBinding (),
-					baseAddress);
+					new BasicHttpBinding (), "");
 
 				host.Open();
 
