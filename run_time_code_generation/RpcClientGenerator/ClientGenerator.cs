@@ -41,12 +41,12 @@ namespace RpcClientGenerator
 		private static string GenerateMethodCode(MethodInfo method)
 		{
 			string returnType = method.ReturnType.FullName;
-			string methodNname = method.Name;
+			string methodName = method.Name;
 			string parameterType = method.GetParameters ().Single ().ParameterType.FullName;
 
 			var code = GetFormattingString("method");
 			code = code.Replace ("{returnType}", returnType);
-			code = code.Replace ("{methodName}", methodNname);
+			code = code.Replace ("{methodName}", methodName);
 			return code.Replace ("{parameterType}", parameterType);
 		}
 
