@@ -42,6 +42,7 @@
     <Compile Include="IRpcClient.cs" />
     <Compile Include="MockMathOperationsClient.cs" />
     <Compile Include="ManualRemoteMathOperations.cs" />
+    <Compile Include="RemoteProcedureNameAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
