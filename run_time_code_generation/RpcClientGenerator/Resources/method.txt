@@ -1,4 +1,4 @@
 	public {returnType} {methodName}({parameterType} parameter)
 	{
-		return ({returnType})_client.ExecuteMethod ("{methodName}", parameter);
+		return ({returnType})_client.ExecuteMethod ("{remoteMethodName}", parameter);
 	}

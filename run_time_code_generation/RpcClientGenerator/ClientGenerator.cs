@@ -44,9 +44,13 @@ namespace RpcClientGenerator
 			string methodName = method.Name;
 			string parameterType = method.GetParameters ().Single ().ParameterType.FullName;
 
+			var remoteNameAttribute = (RemoteProcedureNameAttribute)Attribute.GetCustomAttribute (method, typeof(RemoteProcedureNameAttribute));
+			string remoteMethodName = remoteNameAttribute == null ? method.Name : remoteNameAttribute.Name;
+
 			var code = GetFormattingString("method");
 			code = code.Replace ("{returnType}", returnType);
 			code = code.Replace ("{methodName}", methodName);
+			code = code.Replace ("{remoteMethodName}", remoteMethodName);
 			return code.Replace ("{parameterType}", parameterType);
 		}
 
