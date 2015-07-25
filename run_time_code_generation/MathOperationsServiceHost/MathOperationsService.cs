@@ -17,6 +17,10 @@ namespace MathOperationsServiceLibrary
 
 		public double SquareRoot (double x)
 		{
+			if (x < 0) 
+			{
+				throw new ArgumentOutOfRangeException ("x");
+			}
 			return Math.Sqrt (x);
 		}
 
