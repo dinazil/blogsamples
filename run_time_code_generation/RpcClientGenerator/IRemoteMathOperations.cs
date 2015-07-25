@@ -7,6 +7,9 @@ namespace RpcClientGenerator
 		int Increment(int n);
 		int Decrement(int n);
 		double SquareRoot(double x);
+
+		[RemoteProcedureName("Increment")]
+		int increment(int n);
 	}
 }
 

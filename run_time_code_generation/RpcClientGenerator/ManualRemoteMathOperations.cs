@@ -25,6 +25,11 @@ namespace RpcClientGenerator
 			return (int)_client.ExecuteMethod ("Increment", n);
 		}
 
+		public int increment(int n)
+		{
+			return (int)_client.ExecuteMethod ("Increment", n);
+		}
+
 		public int Decrement(int n)
 		{
 			return (int)_client.ExecuteMethod ("Decrement", n);
