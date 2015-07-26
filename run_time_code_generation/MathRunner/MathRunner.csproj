@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ManualRemoteMathOperationsClient.cs" />
     <Compile Include="Service References\MathOperationsService\Reference.cs">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
