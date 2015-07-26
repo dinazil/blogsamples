@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3f37c0ff-6509-4119-87cf-9aad55a7ed42" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ff6b0b09-2494-4c12-8477-84b35340653a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
-    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>false</GenerateTaskBasedAsynchronousMethod>
     <GenerateEventBasedAsynchronousMethods>false</GenerateEventBasedAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -21,8 +21,8 @@
     <MetadataSource Address="http://localhost:12345/MathOperations" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MathOperations.wsdl" MetadataType="Wsdl" ID="f32833aa-7855-4f7a-8fed-9c10ac866fed" SourceId="1" SourceUrl="http://localhost:12345/MathOperations?wsdl" />
-    <MetadataFile FileName="MathOperations.xsd" MetadataType="Schema" ID="34b9ddca-f000-4932-9733-b03c6db3b6bc" SourceId="1" SourceUrl="http://localhost:12345/MathOperations?xsd=xsd1" />
-    <MetadataFile FileName="MathOperations1.xsd" MetadataType="Schema" ID="444ce875-cfe8-4066-b98b-545947646463" SourceId="1" SourceUrl="http://localhost:12345/MathOperations?xsd=xsd0" />
+    <MetadataFile FileName="MathOperations.wsdl" MetadataType="Wsdl" ID="770f94ad-ecfa-420a-9648-6c6c85944706" SourceId="1" SourceUrl="http://localhost:12345/MathOperations?wsdl" />
+    <MetadataFile FileName="MathOperations.xsd" MetadataType="Schema" ID="e78c8c1b-e99f-409d-9ade-e2d015a1673e" SourceId="1" SourceUrl="http://localhost:12345/MathOperations?xsd=xsd1" />
+    <MetadataFile FileName="MathOperations1.xsd" MetadataType="Schema" ID="3449de4a-7af0-48e3-99b5-60f31aad10e0" SourceId="1" SourceUrl="http://localhost:12345/MathOperations?xsd=xsd0" />
   </Metadata>
 </ReferenceGroup>

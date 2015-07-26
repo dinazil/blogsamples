@@ -19,34 +19,14 @@ public interface IMathOperationsService {
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMathOperationsService/Increment", ReplyAction="http://tempuri.org/IMathOperationsService/IncrementResponse")]
     int Increment(int n);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMathOperationsService/Increment", ReplyAction="http://tempuri.org/IMathOperationsService/IncrementResponse", AsyncPattern=true)]
-    System.IAsyncResult BeginIncrement(int n, System.AsyncCallback asyncCallback, object userState);
-    
-    int EndIncrement(System.IAsyncResult result);
-    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMathOperationsService/Decrement", ReplyAction="http://tempuri.org/IMathOperationsService/DecrementResponse")]
     int Decrement(int n);
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMathOperationsService/Decrement", ReplyAction="http://tempuri.org/IMathOperationsService/DecrementResponse", AsyncPattern=true)]
-    System.IAsyncResult BeginDecrement(int n, System.AsyncCallback asyncCallback, object userState);
-    
-    int EndDecrement(System.IAsyncResult result);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMathOperationsService/SquareRoot", ReplyAction="http://tempuri.org/IMathOperationsService/SquareRootResponse")]
     double SquareRoot(double x);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMathOperationsService/SquareRoot", ReplyAction="http://tempuri.org/IMathOperationsService/SquareRootResponse", AsyncPattern=true)]
-    System.IAsyncResult BeginSquareRoot(double x, System.AsyncCallback asyncCallback, object userState);
-    
-    double EndSquareRoot(System.IAsyncResult result);
-    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMathOperationsService/Timeout", ReplyAction="http://tempuri.org/IMathOperationsService/TimeoutResponse")]
     void Timeout(System.TimeSpan time);
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMathOperationsService/Timeout", ReplyAction="http://tempuri.org/IMathOperationsService/TimeoutResponse", AsyncPattern=true)]
-    System.IAsyncResult BeginTimeout(System.TimeSpan time, System.AsyncCallback asyncCallback, object userState);
-    
-    void EndTimeout(System.IAsyncResult result);
 }
 
 public interface IMathOperationsServiceChannel : IMathOperationsService, System.ServiceModel.IClientChannel {
@@ -77,47 +57,15 @@ public class MathOperationsServiceClient : System.ServiceModel.ClientBase<IMathO
         return base.Channel.Increment(n);
     }
     
-    public System.IAsyncResult BeginIncrement(int n, System.AsyncCallback asyncCallback, object userState) {
-        return base.Channel.BeginIncrement(n, asyncCallback, userState);
-    }
-    
-    public int EndIncrement(System.IAsyncResult result) {
-        return base.Channel.EndIncrement(result);
-    }
-    
     public int Decrement(int n) {
         return base.Channel.Decrement(n);
-    }
-    
-    public System.IAsyncResult BeginDecrement(int n, System.AsyncCallback asyncCallback, object userState) {
-        return base.Channel.BeginDecrement(n, asyncCallback, userState);
-    }
-    
-    public int EndDecrement(System.IAsyncResult result) {
-        return base.Channel.EndDecrement(result);
     }
     
     public double SquareRoot(double x) {
         return base.Channel.SquareRoot(x);
     }
     
-    public System.IAsyncResult BeginSquareRoot(double x, System.AsyncCallback asyncCallback, object userState) {
-        return base.Channel.BeginSquareRoot(x, asyncCallback, userState);
-    }
-    
-    public double EndSquareRoot(System.IAsyncResult result) {
-        return base.Channel.EndSquareRoot(result);
-    }
-    
     public void Timeout(System.TimeSpan time) {
         base.Channel.Timeout(time);
-    }
-    
-    public System.IAsyncResult BeginTimeout(System.TimeSpan time, System.AsyncCallback asyncCallback, object userState) {
-        return base.Channel.BeginTimeout(time, asyncCallback, userState);
-    }
-    
-    public void EndTimeout(System.IAsyncResult result) {
-        base.Channel.EndTimeout(result);
     }
 }

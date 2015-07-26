@@ -87,9 +87,83 @@
       </output>
     </operation>
   </binding>
+  <binding name="NetTcpBinding_IMathOperationsService" type="tns:IMathOperationsService">
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsp:Policy>
+      <wsp:ExactlyOne>
+        <wsp:All>
+          <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+          <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+            <wsp:Policy>
+              <sp:TransportToken>
+                <wsp:Policy>
+                  <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                    <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                  </msf:WindowsTransportSecurity>
+                </wsp:Policy>
+              </sp:TransportToken>
+              <sp:AlgorithmSuite>
+                <wsp:Policy>
+                  <sp:Basic256 />
+                </wsp:Policy>
+              </sp:AlgorithmSuite>
+              <sp:Layout>
+                <wsp:Policy>
+                  <sp:Strict />
+                </wsp:Policy>
+              </sp:Layout>
+            </wsp:Policy>
+          </sp:TransportBinding>
+          <wsaw:UsingAddressing />
+        </wsp:All>
+      </wsp:ExactlyOne>
+    </wsp:Policy>
+    <operation name="Increment">
+      <soap12:operation soapAction="http://tempuri.org/IMathOperationsService/Increment" style="document" />
+      <input>
+        <soap12:body use="literal" />
+      </input>
+      <output>
+        <soap12:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Decrement">
+      <soap12:operation soapAction="http://tempuri.org/IMathOperationsService/Decrement" style="document" />
+      <input>
+        <soap12:body use="literal" />
+      </input>
+      <output>
+        <soap12:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SquareRoot">
+      <soap12:operation soapAction="http://tempuri.org/IMathOperationsService/SquareRoot" style="document" />
+      <input>
+        <soap12:body use="literal" />
+      </input>
+      <output>
+        <soap12:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Timeout">
+      <soap12:operation soapAction="http://tempuri.org/IMathOperationsService/Timeout" style="document" />
+      <input>
+        <soap12:body use="literal" />
+      </input>
+      <output>
+        <soap12:body use="literal" />
+      </output>
+    </operation>
+  </binding>
   <service name="service">
     <port name="BasicHttpBinding_IMathOperationsService" binding="tns:BasicHttpBinding_IMathOperationsService">
       <soap:address location="http://localhost:12345/MathOperations" />
+    </port>
+    <port name="NetTcpBinding_IMathOperationsService" binding="tns:NetTcpBinding_IMathOperationsService">
+      <soap12:address location="net.tcp://localhost:12346/MathOperations" />
+      <EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+        <Address>net.tcp://localhost:12346/MathOperations</Address>
+      </EndpointReference>
     </port>
   </service>
 </definitions>
