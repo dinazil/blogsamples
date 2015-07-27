@@ -18,12 +18,7 @@ namespace RpcClientGenerator
 			var result = provider.CompileAssemblyFromSource (parameters, code);
 			if (result.Errors.HasErrors) 
 			{
-				Console.WriteLine (code);
-				Console.WriteLine ("Errors:");
-				foreach (var error in result.Errors) 
-				{
-					Console.WriteLine (error);
-				}
+				throw new Exception ("Could not compile auto-generated code");
 			}
 
 			var smartClientType = result.CompiledAssembly.GetType ("SmartClient");
