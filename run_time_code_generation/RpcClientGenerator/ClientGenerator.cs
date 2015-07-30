@@ -9,13 +9,18 @@ namespace RpcClientGenerator
 {
 	public static class ClientGenerator
 	{
-		public static T GenerateRpcClient<T> (IRpcClient client) where T : class
-		{
-			string code = GenerateInterfaceWrapperCode<T> (); 
-			var provider = CodeDomProvider.CreateProvider("CSharp");
-			var parameters = new CompilerParameters ();
+        public static T GenerateRpcClient<T>(IRpcClient client) where T : class
+        {
+            string code = GenerateInterfaceWrapperCode<T>();
+            var provider = CodeDomProvider.CreateProvider("CSharp");
+            var parameters = new CompilerParameters()
+            {
+                IncludeDebugInformation = true,
+                //TODO: need a more general way to find the 
+                TempFiles = new TempFileCollection(Path.GetTempPath(), true)
+            };
 			parameters.ReferencedAssemblies.Add (typeof(T).Assembly.Location);
-			var result = provider.CompileAssemblyFromSource (parameters, code);
+            var result = provider.CompileAssemblyFromSource (parameters, code);
 			if (result.Errors.HasErrors) 
 			{
 				throw new Exception ("Could not compile auto-generated code");
