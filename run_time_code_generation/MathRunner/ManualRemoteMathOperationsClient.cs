@@ -19,9 +19,10 @@ namespace MathRunner
 
 		private void RegenerateClientIfNeeded()
 		{
-			if (_client == null || ((ICommunicationObject)_client).State == CommunicationState.Faulted) 
+            var commObject = _client as ICommunicationObject;
+			if (commObject == null || commObject.State == CommunicationState.Faulted) 
 			{
-				((IDisposable)_client).Dispose ();
+                commObject.Abort();
 				_client = _clientGenerator ();
 			}
 		}
