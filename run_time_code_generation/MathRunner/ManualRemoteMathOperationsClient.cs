@@ -1,14 +1,15 @@
 ﻿using System;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 
 namespace MathRunner
 {
-	public class ManualRemoteMathOperationsClient : ClientBase<IMathOperationsService>, IMathOperationsService
+	public class ManualRemoteMathOperationsClient : IMathOperationsService
 	{
-		public delegate MathOperationsServiceClient ClientGenerator();
+		public delegate IMathOperationsService ClientGenerator();
 
 		private ClientGenerator _clientGenerator;
-		private MathOperationsServiceClient _client;
+		private IMathOperationsService _client;
 
 		public ManualRemoteMathOperationsClient (ClientGenerator clientGenerator)
 		{
@@ -18,8 +19,9 @@ namespace MathRunner
 
 		private void RegenerateClientIfNeeded()
 		{
-			if (_client == null || _client.State == CommunicationState.Faulted) 
+			if (_client == null || ((ICommunicationObject)_client).State == CommunicationState.Faulted) 
 			{
+				((IDisposable)_client).Dispose ();
 				_client = _clientGenerator ();
 			}
 		}

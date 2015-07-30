@@ -5,44 +5,44 @@ namespace MathRunner
 {
 	class MainClass
 	{
-		public static void Main (string[] args)
+		private static IMathOperationsService Generator ()
 		{
 			string baseAddress = "net.tcp://localhost:12346/MathOperations";
-			using (var client = new MathOperationsServiceClient(
-				new NetTcpBinding(), 
-				new EndpointAddress(baseAddress)))
-			{
-				client.InnerChannel.OperationTimeout = TimeSpan.FromSeconds (2);
+			var client = new MathOperationsServiceClient (
+				             new NetTcpBinding (), 
+				             new EndpointAddress (baseAddress));
+			client.InnerChannel.OperationTimeout = TimeSpan.FromSeconds (2);
 
-				Console.WriteLine ("Click Enter to start...");
-				Console.ReadLine ();
-				Console.WriteLine (client.Increment (0));
-				Console.WriteLine (client.Decrement (3));
-				Console.WriteLine (client.SquareRoot (9));
+			return client;
+		}
 
-				try
-				{
-					Console.WriteLine (client.SquareRoot (-16));
-				}
-				catch (Exception ex)
-				{
-					Console.WriteLine (ex.Message); 
-				}
+		public static void Main (string[] args)
+		{
+			var client = new ManualRemoteMathOperationsClient (Generator);
 
-				Console.WriteLine (client.SquareRoot (25));
+			Console.WriteLine ("Click Enter to start...");
+			Console.ReadLine ();
+			Console.WriteLine (client.Increment (0));
+			Console.WriteLine (client.Decrement (3));
+			Console.WriteLine (client.SquareRoot (9));
 
-				try
-				{
-					client.Timeout(TimeSpan.FromSeconds(5));
-				}
-				catch (Exception ex)
-				{
-					Console.WriteLine (ex.Message); 
-				}
-
-				Console.WriteLine (client.SquareRoot (36));
-
+			try {
+				Console.WriteLine (client.SquareRoot (-16));
+			} catch (Exception ex) {
+				Console.WriteLine (ex.Message); 
 			}
+
+			Console.WriteLine (client.SquareRoot (25));
+
+			try {
+				client.Timeout (TimeSpan.FromSeconds (5));
+			} catch (Exception ex) {
+				Console.WriteLine (ex.Message); 
+			}
+
+			Console.WriteLine (client.SquareRoot (36));
+
+
 		}
 	}
 }
