@@ -16,7 +16,6 @@ namespace RpcClientGenerator
             var parameters = new CompilerParameters()
             {
                 IncludeDebugInformation = true,
-                //TODO: need a more general way to find the 
                 TempFiles = new TempFileCollection(Path.GetTempPath(), true)
             };
 			parameters.ReferencedAssemblies.Add (typeof(T).Assembly.Location);
