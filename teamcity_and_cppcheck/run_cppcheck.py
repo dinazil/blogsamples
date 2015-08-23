@@ -51,7 +51,9 @@ def main():
     parser.add_argument("--xp", type=file, help="Path of file with directories or files to exclude from analysis", default="exclude_paths.txt")
     parser.add_argument("--xdef", type=file, help="Path of file with definitions to exclude", default="exclude_defines.txt")
     parser.add_argument("--s", type=str, help="Path of file with warnings to suppress", default="suppressions.txt")
-    parser.add_argument("--cc", type=bool, help="Specifies whether to check the configuration of cppcheck", default=False)
+    parser.add_argument("--cc", dest="cc", help="Check the configuration of cppcheck", action="store_true")
+    parser.add_argument("--no-cc", dest="cc", help="Don't heck the configuration of cppcheck", action="store_false")
+    parser.set_defaults(cc=False)
     parser.add_argument("--ot", type=str, help="The output template", default=None)
 
     # get all data from command line
