@@ -1,0 +1,59 @@
+﻿<Window x:Class="SelfProfiling.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SelfProfiling"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="750"
+		Name="Self"
+		Loaded="MainWindow_OnLoaded"
+		Closing="MainWindow_OnClosing">
+	<Window.Resources>
+		<local:BooleanToOppositeBooleanValueConverter x:Key="BooleanToOppositeBooleanValueConverter"></local:BooleanToOppositeBooleanValueConverter>
+	</Window.Resources>
+    <UniformGrid Rows="1">
+		<GroupBox Header="Profiling Control">
+			<StackPanel>
+				<Button Name="StartProfilingButton" 
+						Click="StartProfilingButton_OnClick">Start</Button>
+				<Button Name="StopProfilingButton"
+						Click="StopProfilingButton_OnClick"
+						IsEnabled="{Binding ElementName=StartProfilingButton, Path=IsEnabled, Converter={StaticResource BooleanToOppositeBooleanValueConverter}}">Stop</Button>
+				<UniformGrid Columns="2">
+					<Label>Buffer size (MB):</Label>
+					<TextBox Name="BufferSizeTextBox">512</TextBox>
+					<Label>Time elapsed:</Label>
+					<Label Name="ProfilingTimeElapsedLabel"></Label>
+					<Label>Events lost (Trace)</Label>
+					<Label Name="EventsLostTraceLabel"></Label>
+					<Label>Events lost (Kenrel)</Label>
+					<Label Name="EventsLostKernelLabel"></Label>
+					<Label>Events lost (CLR)</Label>
+					<Label Name="EventsLostClrLabel"></Label>
+				</UniformGrid>
+			</StackPanel>
+		</GroupBox>
+		<GroupBox Header="Crunching Control">
+			<StackPanel>
+				<Button Name="StartGrindingButton"
+						Click="StartGrindingButton_OnClick">Start</Button>
+				<Button Name="StopGrindingButton"
+						Click="StopGrindingButton_OnClick"
+						IsEnabled="{Binding ElementName=StartGrindingButton, Path=IsEnabled, Converter={StaticResource BooleanToOppositeBooleanValueConverter}}">Stop</Button>
+				<UniformGrid Columns="2">
+					<Label>Time elapsed:</Label>
+					<Label Name="TimeElapsedLabel"></Label>
+					<Label>Number of Primes:</Label>
+					<Label Name="NumberOfPrimesLabel"></Label>
+					<Label>Number of calls to native:</Label>
+					<Label Name="NumberOfNativeCallsLabel"></Label>
+					<Label>Number of calles to managed:</Label>
+					<Label Name="NumberOfManagedCallsLabel"></Label>
+					<Label>CPU Usage (%):</Label>
+					<Label Name="CpuUsageLabel"></Label>
+				</UniformGrid>
+			</StackPanel>
+		</GroupBox>
+	</UniformGrid>
+</Window>
