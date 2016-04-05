@@ -36,3 +36,5 @@
 bin/
 obj/
 packages/
+release/
+debug/
